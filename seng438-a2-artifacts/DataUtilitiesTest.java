@@ -5,117 +5,110 @@ import org.jfree.data.*;
 import org.junit.*;
 import org.jmock.*;
 
-import java.util.List;
-import java.util.ArrayList;
-
 public class DataUtilitiesTest{
 	
 	// Is this even necessary?
-	private DataUtilities testDataUtilities;
+	private KeyedValues values1;
+	private KeyedValues values2;
+	private KeyedValues values3;
+
+
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
     }
     
-    // Not sure what to put here
     @Before
     public void setUp() throws Exception { 
-    }
-
-
-//    @Test
-//    public void calculateColumnTotalForTwoValues() {
-//        // setup
-//        Mockery mockingContext = new Mockery();
-//        final Values2D values = mockingContext.mock(Values2D.class);
-//        mockingContext.checking(new Expectations() {
-//            {
-//                one(values).getRowCount();
-//                will(returnValue(2));
-//                one(values).getValue(0, 0);
-//                will(returnValue(7.5));
-//                one(values).getValue(1, 0);
-//                will(returnValue(2.5));
-//            }
-//        });
-//        double result = DataUtilities.calculateColumnTotal(values, 0);
-//        // verify
-//        assertEquals(result, 10.0, .000000001d);
-//        // tear-down: NONE in this test method
-//    }
-    
-    @Test
-    public void testGetCumalitivePercentages() {
-        // setup
+    	// setup
         Mockery mockingContext = new Mockery();
-        final KeyedValues values = mockingContext.mock(KeyedValues.class, "values");
         
-        final List<Integer> keys = new ArrayList<Integer>();
-        keys.add(0);
-        keys.add(1);
+        values1 = mockingContext.mock(KeyedValues.class, "values1");
+        values2 = mockingContext.mock(KeyedValues.class, "values2");
+        values3 = mockingContext.mock(KeyedValues.class, "values3");
         
-        // what is comparable? Will that be our equivalence classes
-        
+        // ECT - keyed value is a double, int and string?
+        // try negatives, null and positives for all ECT's
         
         mockingContext.checking(new Expectations() {
             {
-            	// Trying to initialize a KeyedValues object using getters
-            	 oneOf(values).getKey(0);
-                 will(returnValue(0));
-                 oneOf(values).getKey(1);  will(returnValue(1));
-            	
-//                one(values).getValue(0);
-//                will(returnValue(2));
-//                one(values).getValue(1);
-//                will(returnValue(2));
-//                
-//                one(values).getItemCount();
-//                will(returnValue(2));
-//                
-//                one(values).getKeys();
-//                will(returnValue(keys));                               
+            	// Trying to initialize a KeyedValues object using getters             
+            	allowing(values1).getItemCount();
+                will(returnValue(2));
+                allowing(values1).getValue(1);
+                will(returnValue(2));
+                allowing(values1).getValue(0);
+                will(returnValue(2));
+                allowing(values1).getKey(0);
+                will(returnValue(0));
+                allowing(values1).getKey(1);
+                will(returnValue(1));             
+                
+                
+                allowing(values2).getItemCount();
+                will(returnValue(1));
+                allowing(values2).getValue(0);
+                will(returnValue(-4));
+                allowing(values2).getKey(0);
+                will(returnValue("Hello"));
+                
+                allowing(values3).getItemCount();
+                will(returnValue(1));
+                allowing(values3).getValue(0);
+                will(returnValue(0));
+                allowing(values3).getKey(0);
+                will(returnValue(3.7666));
+                
+                                
                 
             }
         });
-        
-        // I have a feeling we should setup outside test function??
-        
-        final KeyedValues expected = mockingContext.mock(KeyedValues.class, "expected");
-        
-        mockingContext.checking(new Expectations() {
-            {
-            	// Trying to initialize a KeyedValues object using getters
-            	 one(expected).getKey(0);
-                 will(returnValue(0));
-                 one(expected).getKey(1);
-                 will(returnValue(1));
-            	
-//                one(expected).getValue(0);
-//                will(returnValue(0.5));
-//                one(expected).getIndex(1);
-//                will(returnValue(1.0));
-                
-//                one(expected).getItemCount();
-//                will(returnValue(2));
-//                
-//                
-//                one(expected).getKeys();
-//                will(returnValue(keys)); 
-                
-            }
-        });        
-        
-        // Is there somewhere that tells us how to build our mock objects?
-        
-        KeyedValues result = DataUtilities.getCumulativePercentages(values);                
-        
-        // verify
-         assertEquals(result, expected);
-        // tear-down: NONE in this test method
     }
+
+    
+    @Test
+    public void testGetCumalitivePercentagesReturnsCorrectValueAtIndexZeroForIntKeys() {                      
+       
+        KeyedValues result = DataUtilities.getCumulativePercentages(values1);                           
+        assertEquals(0.5, result.getValue(0));      
+    }
+    
+    @Test
+    public void testGetCumalitivePercentagesReturnsCorrectValueAtIndexOneForIntKeys() {                      
+       
+        KeyedValues result = DataUtilities.getCumulativePercentages(values1);                           
+        assertEquals(1, result.getValue(1));      
+    }
+    
+    @Test
+    public void testGetCumalitivePercentagesThrowsExceptionForValueNegativeInt() {
+    	KeyedValues result = DataUtilities.getCumulativePercentages(values2);                           
+        assertEquals(1, result.getValue(0));
+        // shouldnt it throw exception
+    }
+    
+    @Test
+    public void testGetCumalitivePercentagesThrowsExceptionForValueZero() {
+    	KeyedValues result = DataUtilities.getCumulativePercentages(values3);                           
+        assertEquals(1, result.getValue(0));      
+        // shouldnt it throw exception
+    }
+    
+        
+    
+    
+    
+    
+    
+    
+    // ECT's keys are doubles, integers and strings
+    // ECT's Boundary values are null, negatives and positives (if applicable)
+    
+    
 
     @After
     public void tearDown() throws Exception {
     }
+    
 
     @AfterClass
     public static void tearDownAfterClass() throws Exception {
@@ -126,3 +119,27 @@ public class DataUtilitiesTest{
     
 
 }
+
+
+//I have a feeling we should setup outside test function??
+
+//final KeyedValues expected = mockingContext.mock(KeyedValues.class, "expected");
+//
+//mockingContext.checking(new Expectations() {
+//    {
+//    	// Trying to initialize a KeyedValues object using getters
+//    	 one(expected).getKey(0);
+//         will(returnValue(0));
+//         one(expected).getKey(1);
+//         will(returnValue(1));
+//    	
+//        one(expected).getValue(0);
+//        will(returnValue(0.5));
+//        one(expected).getIndex(1);
+//        will(returnValue(1.0));
+//        
+//        one(expected).getItemCount();
+//        will(returnValue(2));
+//        
+//    }
+//});  
