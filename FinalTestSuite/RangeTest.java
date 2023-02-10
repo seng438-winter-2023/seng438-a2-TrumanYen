@@ -39,7 +39,7 @@ public class RangeTest {
     	assertEquals("The lower bound should be "+lower,
     	        lower, testRange.getLowerBound(), .000000001d);
     	assertEquals("The upper bound should be "+upper,
-    	        upper, testRange.getLowerBound(), .000000001d);
+    	        upper, testRange.getUpperBound(), .000000001d);
     }
     @Test(expected = Exception.class)
     public void test_negLower_negUpper_lowerGreaterUpper() {
@@ -68,7 +68,7 @@ public class RangeTest {
     	assertEquals("The lower bound should be "+lower,
     	        lower, testRange.getLowerBound(), .000000001d);
     	assertEquals("The upper bound should be "+upper,
-    	        upper, testRange.getLowerBound(), .000000001d);
+    	        upper, testRange.getUpperBound(), .000000001d);
     }
     @Test
     public void test_zeroLower_zeroUpper() throws Exception{
@@ -78,7 +78,7 @@ public class RangeTest {
     	assertEquals("The lower bound should be "+lower,
     	        lower, testRange.getLowerBound(), .000000001d);
     	assertEquals("The upper bound should be "+upper,
-    	        upper, testRange.getLowerBound(), .000000001d);
+    	        upper, testRange.getUpperBound(), .000000001d);
     }
     @Test(expected = Exception.class)
     public void test_posLower_zeroUpper() {
@@ -94,7 +94,7 @@ public class RangeTest {
     	assertEquals("The lower bound should be "+lower,
     	        lower, testRange.getLowerBound(), .000000001d);
     	assertEquals("The upper bound should be "+upper,
-    	        upper, testRange.getLowerBound(), .000000001d);
+    	        upper, testRange.getUpperBound(), .000000001d);
     }
     @Test
     public void test_posLower_posUpper_lowerEqualUpper() throws Exception{
@@ -104,7 +104,7 @@ public class RangeTest {
     	assertEquals("The lower bound should be "+lower,
     	        lower, testRange.getLowerBound(), .000000001d);
     	assertEquals("The upper bound should be "+upper,
-    	        upper, testRange.getLowerBound(), .000000001d);
+    	        upper, testRange.getUpperBound(), .000000001d);
     }
     @Test(expected = Exception.class)
     public void test_posLower_posUpper_lowerGreaterUpper() {
@@ -165,7 +165,7 @@ public class RangeTest {
     @Test
     public void exampleRangeThreeLengthTest() {
         assertEquals("The length of exampleRangeThree should be 20",
-        20, exampleRangeTwo.getLength(), .000000001d);
+        20, exampleRangeThree.getLength(), .000000001d);
     }
     @Test
 	public void centralValueShouldBeZero() {
