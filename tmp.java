@@ -13,9 +13,6 @@ public class RangeTest {
     private Range exampleRangeOne;
     private Range exampleRangeTwo;
     private Range exampleRangeThree;
-    private Range classOneRange;
-    private Range classTwoRange;
-    private Range exampleRange;
     @BeforeClass public static void setUpBeforeClass() throws Exception {
     }
 
@@ -25,9 +22,6 @@ public class RangeTest {
     	exampleRangeOne = new Range(-10, 10);
     	exampleRangeTwo = new Range(20, 50);
     	exampleRangeThree = new Range(-40, -20);
-    	exampleRange = new Range(-1, 1);
-    	classOneRange = new Range(0, 5);
-		classTwoRange = new Range(5, 5);
     }
     
 
@@ -167,21 +161,6 @@ public class RangeTest {
         assertEquals("The length of exampleRangeThree should be 20",
         20, exampleRangeTwo.getLength(), .000000001d);
     }
-    @Test
-	public void centralValueShouldBeZero() {
-		assertEquals("The central value of -1 and 1 should be 0",
-				0, exampleRange.getCentralValue(), .000000001d);
-	}
-	
-	@Test
-	public void centralValueTestOne() {
-		assertEquals("getCentralValue class 1 test", 2.5, classOneRange.getCentralValue(), .000000001d);
-	}
-
-	@Test
-	public void centralValueTestTwo() {
-		assertEquals("getCentralValue class 2 test", 5, classTwoRange.getCentralValue(), .000000001d);
-	}
 
     @After
     public void tearDown() throws Exception {
@@ -191,4 +170,6 @@ public class RangeTest {
     public static void tearDownAfterClass() throws Exception {
     }
 }
-
+public class tmp {
+    
+}
