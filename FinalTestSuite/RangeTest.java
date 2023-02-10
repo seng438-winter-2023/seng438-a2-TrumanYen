@@ -39,7 +39,7 @@ public class RangeTest {
     	assertEquals("The lower bound should be "+lower,
     	        lower, testRange.getLowerBound(), .000000001d);
     	assertEquals("The upper bound should be "+upper,
-    	        upper, testRange.getLowerBound(), .000000001d);
+    	        upper, testRange.getUpperBound(), .000000001d);
     }
     @Test(expected = Exception.class)
     public void test_negLower_negUpper_lowerGreaterUpper() {
