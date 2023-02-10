@@ -24,5 +24,6 @@
 	<classpathentry kind="lib" path="C:/Users/Dyson/Repos/seng438-a2-TrumanYen/seng438-a2-artifacts/Assignment 2-artifact/JFreeChart v1.0/JFreeChart/lib/junit-old.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Dyson/Repos/seng438-a2-TrumanYen/seng438-a2-artifacts/Assignment 2-artifact/JFreeChart v1.0/JFreeChart/lib/objenesis-1.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Dyson/Repos/seng438-a2-TrumanYen/seng438-a2-artifacts/Assignment 2-artifact/JFreeChart v1.0/JFreeChart/lib/servlet.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
