@@ -140,19 +140,9 @@ public class DataUtilitiesTest{
         assertArrayEquals("createNumberArea fails for empty array", expected, result);
     }
 
-    @Test
+    @Test(expected = Exception.class)
     public void createNumberArrayTestNullValues() {
-
-        // equivalent classes:
-        // no entries in array
-        // only doubles in array
-        double[][] arrayTwoD = {};
-
-        Number[][] expected = new Number[0][0];
-
-        // how do we check if exception is thrown
-        assertArrayEquals("createNumberArray throws exception for null value", expected,
-                DataUtilities.createNumberArray(null));
+        Number[] result = DataUtilities.createNumberArray(null);
     }
 
     @Test
@@ -208,18 +198,9 @@ public class DataUtilitiesTest{
         assertArrayEquals("createNumberArray2D fails for empty double array", expected, result);
     }
     
-    @Test
-    public void create2DNumberArrayTestNullValues() {
-
-        // equivalent classes:
-        // no entries in array
-        // only doubles in array
-        double[][] arrayTwoD = {};
-
-        Number[][] expected = new Number[0][0];
-
-        // how do we check if exception is thrown
-        assertArrayEquals("createNumberArray2D throws exception for null value", expected, DataUtilities.createNumberArray2D(null));
+    @Test(expected = Exception.class)
+    public void createNumberArray2DTestNullValues() {
+        Number[][] result = DataUtilities.createNumberArray2D(null);
     }
         
     
