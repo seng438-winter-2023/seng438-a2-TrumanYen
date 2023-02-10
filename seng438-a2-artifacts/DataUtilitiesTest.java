@@ -85,15 +85,6 @@ public class DataUtilitiesTest{
     
     @Test(expected = Exception.class)
     public void testGetCumalitivePercentagesThrowsExceptionForValueZero() {
-<<<<<<< HEAD
-    	KeyedValues result = DataUtilities.getCumulativePercentages(values3);                           
-        
-    }   
-        
-    
-    
-    
-=======
         KeyedValues result = DataUtilities.getCumulativePercentages(values3);
         assertEquals(1, result.getValue(0));
         // shouldnt it throw exception
@@ -170,7 +161,6 @@ public class DataUtilitiesTest{
 
         assertArrayEquals("createNumberArray2D fails for 2d double array", expected, result);
     }
->>>>>>> e20778f9f18698a7245134c759806bc37f669543
     
     @Test
     public void create2DNumberArrayTestNegativeDoubles() {
