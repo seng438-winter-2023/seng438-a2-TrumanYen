@@ -144,6 +144,23 @@ public class DataUtilitiesTest{
     }
 
     @Test
+    public void createNumberArrayTestMaxArray() {
+
+        // equivalent classes:
+        // no entries in array
+        // only doubles in array
+        double[] array = { Double.MAX_VALUE ,  Double.MIN_VALUE };
+
+        Number[] expected = new Number[2];
+        expected[0] = Double.MAX_VALUE;
+        expected[1] = Double.MIN_VALUE;
+
+        Number[] result = DataUtilities.createNumberArray(array);
+
+        assertArrayEquals("createNumberArray fails for max_value double array", expected, result);
+    }
+
+    @Test
     public void create2DNumberArrayTestPositiveDoubles() {
 
         // equivalent classes:
@@ -199,6 +216,23 @@ public class DataUtilitiesTest{
     @Test(expected = Exception.class)
     public void createNumberArray2DTestNullValues() {
         Number[][] result = DataUtilities.createNumberArray2D(null);
+    }
+
+    @Test
+    public void create2DNumberArrayTestMaxArray() {
+
+        // equivalent classes:
+        // no entries in array
+        // only doubles in array
+        double[][] arrayTwoD = { { Double.MAX_VALUE }, {Double.MIN_VALUE}};
+
+        Number[][] expected = new Number[1][0];
+        expected[0][0] = Double.MAX_VALUE;
+        expected[1][0] = Double.MIN_VALUE;
+
+        Number[][] result = DataUtilities.createNumberArray2D(arrayTwoD);
+
+        assertArrayEquals("createNumberArray2D fails for max_value double array", expected, result);
     }
         
     
