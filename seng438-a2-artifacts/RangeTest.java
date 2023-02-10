@@ -9,20 +9,45 @@ import org.jfree.data.*;
 public class RangeTest{
 
 	private Range exampleRange;
+	private Range classOneRange;
+	private Range classTwoRange;
+
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
     }
     
     @Before
-    public void setUp() throws Exception { exampleRange = new Range(-1, 1);
+	public void setUp() throws Exception {
+		exampleRange = new Range(-1, 1);
+
+		// how many equivalence classes?
+		// for each double input:
+		// no restriction on double input
+		// equivalence classes will be:
+		// class 1: lb < ub
+		// class 2: lb = ub
+		// class 3: lb > ub throws error
+
+		classOneRange = new Range(0, 5);
+		classTwoRange = new Range(5, 5);
     }
 
 
     @Test
-    public void centralValueShouldBeZero() {
-        assertEquals("The central value of -1 and 1 should be 0",
-        0, exampleRange.getCentralValue(), .000000001d);
-    }
+	public void centralValueShouldBeZero() {
+		assertEquals("The central value of -1 and 1 should be 0",
+				0, exampleRange.getCentralValue(), .000000001d);
+	}
+	
+	@Test
+	public void centralValueTestOne() {
+		assertEquals("getCentralValue class 1 test", 2.5, classOneRange.getCentralValue(), .000000001d);
+	}
+
+	@Test
+	public void centralValueTestTwo() {
+		assertEquals("getCentralValue class 2 test", 5, classOneRange.getCentralValue(), .000000001d);
+	}
     
     
 	  @Test
