@@ -79,20 +79,16 @@ public class DataUtilitiesTest{
         assertEquals(1, result.getValue(1));      
     }
     
-    @Test
+    @Test(expected = Exception.class)
     public void testGetCumalitivePercentagesThrowsExceptionForValueNegativeInt() {
-    	KeyedValues result = DataUtilities.getCumulativePercentages(values2);                           
-        assertEquals(1, result.getValue(0));
-        // shouldnt it throw exception
+    	KeyedValues result = DataUtilities.getCumulativePercentages(values2);                                       
     }
     
-    @Test
+    @Test(expected = Exception.class)
     public void testGetCumalitivePercentagesThrowsExceptionForValueZero() {
     	KeyedValues result = DataUtilities.getCumulativePercentages(values3);                           
-        assertEquals(1, result.getValue(0));      
-        // shouldnt it throw exception
-    }
-    
+        
+    }   
         
     
     
@@ -119,27 +115,3 @@ public class DataUtilitiesTest{
     
 
 }
-
-
-//I have a feeling we should setup outside test function??
-
-//final KeyedValues expected = mockingContext.mock(KeyedValues.class, "expected");
-//
-//mockingContext.checking(new Expectations() {
-//    {
-//    	// Trying to initialize a KeyedValues object using getters
-//    	 one(expected).getKey(0);
-//         will(returnValue(0));
-//         one(expected).getKey(1);
-//         will(returnValue(1));
-//    	
-//        one(expected).getValue(0);
-//        will(returnValue(0.5));
-//        one(expected).getIndex(1);
-//        will(returnValue(1.0));
-//        
-//        one(expected).getItemCount();
-//        will(returnValue(2));
-//        
-//    }
-//});  
