@@ -7,7 +7,6 @@ import org.jmock.*;
 
 public class DataUtilitiesTest{
 	
-	// Is this even necessary?
 	private KeyedValues values1;
 	private KeyedValues values2;
 	private KeyedValues values3;
@@ -88,17 +87,141 @@ public class DataUtilitiesTest{
     
     @Test
     public void testGetCumalitivePercentagesThrowsExceptionForValueZero() {
-    	KeyedValues result = DataUtilities.getCumulativePercentages(values3);                           
-        assertEquals(1, result.getValue(0));      
+        KeyedValues result = DataUtilities.getCumulativePercentages(values3);
+        assertEquals(1, result.getValue(0));
         // shouldnt it throw exception
     }
     
+    @Test
+    public void createNumberArrayTestPositiveDoubles() {
+        // equivalent classes:
+        // no entries in array
+        // only doubles in array
+        double[] arrayOneD = { 0.1, 0.2, 0.3 };
+
+        Number[] expected = new Number[3];
+        expected[0] = 0.1;
+        expected[1] = 0.2;
+        expected[2] = 0.3;
+
+        Number[] result = DataUtilities.createNumberArray(arrayOneD);
+
+        assertArrayEquals("createNumberArray fails for input of doubles", expected, result);
+    }
+
+    @Test
+    public void createNumberArrayTestNegativeDoubles() {
+        // equivalent classes:
+        // no entries in array
+        // only doubles in array
+        double[] arrayOneD = {-0.1, -0.2, -0.3};
+
+        Number[] expected = new Number[3];
+        expected[0] = -0.1;
+        expected[1] = -0.2;
+        expected[2] = -0.3;
+
+        Number[] result = DataUtilities.createNumberArray(arrayOneD);
+
+        assertArrayEquals("createNumberArray fails for input of negative doubles", expected, result);
+    }
+
+    @Test
+    public void createNumberArrayTestEmptyArray() {
+        // equivalent classes:
+        // no entries in array
+        // only doubles in array
+        double[] arrayOneD = {};
+
+        Number[] expected = new Number[0];
+
+        Number[] result = DataUtilities.createNumberArray(arrayOneD);
+
+        assertArrayEquals("createNumberArea fails for empty array", expected, result);
+    }
+
+    @Test
+    public void createNumberArrayTestNullValues() {
+
+        // equivalent classes:
+        // no entries in array
+        // only doubles in array
+        double[][] arrayTwoD = {};
+
+        Number[][] expected = new Number[0][0];
+
+        // how do we check if exception is thrown
+        assertArrayEquals("createNumberArray throws exception for null value", expected,
+                DataUtilities.createNumberArray(null));
+    }
+
+    @Test
+    public void create2DNumberArrayTestPositiveDoubles() {
+
+        // equivalent classes:
+        // no entries in array
+        // only doubles in array
+        double[][] arrayTwoD = { { 0.1, 0.00002 }, { 0.0001, 0.5 } };
+
+        Number[][] expected = new Number[2][2];
+        expected[0][0] = 0.1;
+        expected[0][1] = 0.00002;
+        expected[1][0] = 0.0001;
+        expected[1][1] = 0.5;
+
+        Number[][] result = DataUtilities.createNumberArray2D(arrayTwoD);
+
+        assertArrayEquals("createNumberArray2D fails for 2d double array", expected, result);
+    }
+    
+    @Test
+    public void create2DNumberArrayTestNegativeDoubles() {
+
+        // equivalent classes:
+        // no entries in array
+        // only doubles in array
+        double[][] arrayTwoD = { { -0.1, -0.00002 }, { -0.0001, -0.5 } };
+
+        Number[][] expected = new Number[2][2];
+        expected[0][0] = -0.1;
+        expected[0][1] = -0.00002;
+        expected[1][0] = -0.0001;
+        expected[1][1] = -0.5;
+
+        Number[][] result = DataUtilities.createNumberArray2D(arrayTwoD);
+
+        assertArrayEquals("createNumberArray2D fails for 2d negative double array", expected, result);
+    }
+
+    @Test
+    public void create2DNumberArrayTestEmptyArray() {
+
+        // equivalent classes:
+        // no entries in array
+        // only doubles in array
+        double[][] arrayTwoD = {};
+
+        Number[][] expected = new Number[0][0];
+
+        Number[][] result = DataUtilities.createNumberArray2D(arrayTwoD);
+
+        assertArrayEquals("createNumberArray2D fails for empty double array", expected, result);
+    }
+    
+    @Test
+    public void create2DNumberArrayTestNullValues() {
+
+        // equivalent classes:
+        // no entries in array
+        // only doubles in array
+        double[][] arrayTwoD = {};
+
+        Number[][] expected = new Number[0][0];
+
+        // how do we check if exception is thrown
+        assertArrayEquals("createNumberArray2D throws exception for null value", expected, DataUtilities.createNumberArray2D(null));
+    }
         
-    
-    
-    
-    
-    
     
     // ECT's keys are doubles, integers and strings
     // ECT's Boundary values are null, negatives and positives (if applicable)
